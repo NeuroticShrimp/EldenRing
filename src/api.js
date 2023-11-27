@@ -1,6 +1,6 @@
-const apiUrl = "https://eldenring.fanapis.com/"
+const apiUrl = "https://eldenring.fanapis.com/api"
 
-export default function fetchDataFromApi(path) {
+export default async function fetchDataFromApi(path) {
     const endpoint = window.encodeURI(
         `${apiUrl}${path}`
     );

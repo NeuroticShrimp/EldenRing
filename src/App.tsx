@@ -1,13 +1,12 @@
 import './App.css';
 import BossCard from './BossCard';
+import { Theme } from '@radix-ui/themes';
 
 function App() {
   return (
-    <div className= 'light'>
-      <div className='container'>
+      <Theme>
         <BossCard />
-      </div>
-    </div>
+      </Theme>
   );
 }
 
