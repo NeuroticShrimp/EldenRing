@@ -1,38 +1,65 @@
-.App {
-  text-align: center;
+/* Basic styling for the sidebar */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%; /* Adjust the height as needed */
+  width: 170px; /* Adjust the width as needed */
+  background-color: #333; /* Background color of the sidebar */
+  color: #fff; /* Text color */
+  padding: 20px; /* Adjust the padding as needed */
+  transition: width 0.1s ease;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Styling for the links inside the sidebar */
+.sidebar a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Styling for active link or hover effect */
+.sidebar a:hover,
+.sidebar a.active {
+  background-color: #555; /* Background color for active/hovered links */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+/* Styling for the minimized sidebar */
+.sidebar.minimized {
+   width: 0px; /* Adjust the width when minimized */
+   height: 0px; /* Adjust the height when minimized */
+ }
 
-.App-link {
-  color: #61dafb;
-}
+    /* Hide anchor tags in the minimized state */
+ .sidebar.minimized a {
+   display: none;
+ }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ .sidebar.minimized {
+   margin-top: 20px;
+ }
+ 
+/* ------------------------------------------------------ */
+ /* Styling for the entire boss card */
+ .boss-card {
+display: flex;
+gap: 20px;
+max-width: 600px; /* Adjust the maximum width as needed */
+margin: 0 auto; /* Center the card horizontally */
+}
+/* Styling for the avatar */
+.avatar-root {
+/* Add styling for the avatar container here */
+}
+.avatar-image {
+max-width: 100px; /* Adjust the maximum width of the avatar image */
+max-height: 100px; /* Adjust the maximum height of the avatar image */
+}
+.avatar-fallback {
+/* Add styling for the avatar fallback here */
+}
+/* Styling for the boss information */
+.boss-info {
+/* Add styling for the boss information container here */
 }

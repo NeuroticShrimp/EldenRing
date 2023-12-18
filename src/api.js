@@ -8,10 +8,9 @@ export default async function fetchDataFromApi(path) {
     return fetch(endpoint)
         .then((res) => res.json())
         .then((data) => {
-            if (!data.items) {
-                throw new Error(data.message);
+            if (!data) {
+                throw new Error("fetch error");
             }
-
-            return data.items;
+            return data;
         });
 }

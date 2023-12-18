@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import * as Avatar from '@radix-ui/react-avatar';
+import "./App.css";
 // @ts-ignore
 import fetchDataFromApi from './api';
 
@@ -16,14 +17,13 @@ export interface Boss {
 
 
 const Bosses: React.FC = () => {
-    const [bossData, setBossData] = useState<Boss | null> (null);
+    const [bossData, setBossData] = useState<Boss[] | null>(null);
 
     useEffect(() => {
         const fetchBossData = async () => {
             try {
-                const response = await fetchDataFromApi<Boss>("/bosses");
-                setBossData(response.success ? response.data[0] : null);
-                console.log(response)
+                const response = await fetchDataFromApi<Boss[]>("/bosses");
+                setBossData(response.success ? response.data : null);
             }
             catch (error) {
                 console.log("Error fetching boss data: ", error);
@@ -33,26 +33,31 @@ const Bosses: React.FC = () => {
     }, [])
     return (
         <div>
-            {bossData ? <BossCard boss={bossData} /> : <p>Loading...</p>}
+            {bossData ? (
+                bossData.map((boss, index) => (<BossCard key={index} boss={boss} />))) 
+                : <p>Loading...</p>}
         </div>
     )
 
 }
 
+
 const BossCard: React.FC<{boss: Boss}> = ({ boss }) => (
-    <div style={{ display: 'flex', gap: 20 }}>
-        <Avatar.Root className="AvatarRoot">
+    <div className="boss-card">
+        <Avatar.Root className="avatar-root">
             <Avatar.Image
-                className="AvatarImage"
+                className="avatar-image"
                 src={boss.image}
                 alt={boss.description}
             />
             <Avatar.Fallback className="AvatarFallback" delayMs={600}> </Avatar.Fallback>
         </Avatar.Root>
-        <div>
+        <div className="boss-info">
             <h2>{boss.name}</h2>
             <p>Region: {boss.region}</p>
-            <p>Description: {boss.description}</p>
+            <p>Location: {boss.location}</p>
+            <p>Drops: {boss.drops}</p>
+            <p>Health: {boss.healthPoints}</p>
         </div>
     </div>
 );
